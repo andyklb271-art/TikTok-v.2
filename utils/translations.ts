@@ -3,6 +3,18 @@ import { Language } from "../types";
 
 export const translations = {
   de: {
+    auth: {
+        subtitle: "Melde dich an, um auf die Intelligence Platform zuzugreifen.",
+        email: "EMAIL ADRESSE",
+        password: "PASSWORT",
+        signIn: "Einloggen",
+        signUp: "Konto Erstellen",
+        noAccount: "Neu hier?",
+        hasAccount: "Bereits registriert?",
+        signUpShort: "Registrieren",
+        signInShort: "Login",
+        checkEmail: "Bitte überprüfe deine Emails für den Bestätigungslink!"
+    },
     nav: {
       dashboard: "Dashboard",
       trends: "Trend Discovery",
@@ -192,6 +204,18 @@ export const translations = {
     }
   },
   en: {
+    auth: {
+        subtitle: "Sign in to access the Intelligence Platform.",
+        email: "EMAIL ADDRESS",
+        password: "PASSWORD",
+        signIn: "Sign In",
+        signUp: "Create Account",
+        noAccount: "New here?",
+        hasAccount: "Already registered?",
+        signUpShort: "Sign Up",
+        signInShort: "Login",
+        checkEmail: "Please check your email for the confirmation link!"
+    },
     nav: {
       dashboard: "Dashboard",
       trends: "Trend Discovery",

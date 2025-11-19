@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { ArrowRight, TrendingUp, Zap, Users, Radio, CloudLightning, Server } from 'lucide-react';
+import { ArrowRight, TrendingUp, Zap, Users, Radio, CloudLightning, Server, Database } from 'lucide-react';
 import { ViewState } from '../App';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from 'recharts';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -73,11 +73,10 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
                     {backendActive ? 'Cloud Connected' : 'Standalone Mode'}
                 </span>
              </div>
-             {backendActive && (
-                <div className="flex items-center gap-1 text-[10px] text-slate-500 justify-end">
-                    <Server size={10} /> Node.js/Express
-                </div>
-             )}
+             <div className="flex items-center gap-3 text-[10px] text-slate-500 justify-end">
+                 {backendActive && <span className="flex items-center gap-1"><Server size={10} /> Node.js API</span>}
+                 <span className="flex items-center gap-1 text-green-500"><Database size={10} /> Supabase DB</span>
+             </div>
         </div>
       </header>
 

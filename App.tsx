@@ -1,12 +1,14 @@
 
 import React, { useState } from 'react';
-import { LayoutDashboard, TrendingUp, UserSearch, Eye, Activity, MessageCircle } from 'lucide-react';
+import { LayoutDashboard, TrendingUp, UserSearch, Eye, Activity, MessageCircle, LogOut } from 'lucide-react';
 import { Dashboard } from './components/Dashboard';
 import { TrendExplorer } from './components/TrendExplorer';
 import { AccountAnalyzer } from './components/AccountAnalyzer';
 import { VisionLab } from './components/VisionLab';
 import { ChatBot } from './components/ChatBot';
+import { Auth } from './components/Auth';
 import { useLanguage } from './contexts/LanguageContext';
+import { useAuth } from './contexts/AuthContext';
 
 export enum ViewState {
   DASHBOARD = 'DASHBOARD',
@@ -19,6 +21,16 @@ export enum ViewState {
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<ViewState>(ViewState.DASHBOARD);
   const { language, setLanguage, t } = useLanguage();
+  const { user, loading, signOut } = useAuth();
+
+  // AUTH PROTECTION
+  if (loading) {
+      return <div className="min-h-screen bg-slate-900 flex items-center justify-center text-cyan-500"><Activity className="animate-spin" size={32}/></div>;
+  }
+
+  if (!user) {
+      return <Auth />;
+  }
 
   const renderView = () => {
     switch (currentView) {
@@ -75,6 +87,9 @@ const App: React.FC = () => {
                <div className="h-1.5 bg-slate-800 rounded-full overflow-hidden">
                    <div className="h-full w-[65%] bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full shadow-[0_0_10px_rgba(6,182,212,0.5)]"></div>
                </div>
+               <div className="mt-2 text-[10px] text-slate-500 truncate">
+                  {user.email}
+               </div>
            </div>
         </div>
 
@@ -128,8 +143,13 @@ const App: React.FC = () => {
           />
         </nav>
 
-        <div className="p-4 border-t border-slate-800 text-slate-500 text-xs text-center">
-           {t.nav.footer}
+        <div className="p-4 border-t border-slate-800">
+            <button 
+                onClick={signOut}
+                className="w-full flex items-center justify-center gap-2 text-xs font-bold text-slate-500 hover:text-white transition-colors py-2"
+            >
+                <LogOut size={14} /> Logout
+            </button>
         </div>
       </aside>
 
